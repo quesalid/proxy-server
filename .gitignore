@@ -108,3 +108,6 @@ dist
 
 #do not export vs directory
 .vs/
+
+#do not export test Directory
+test/

@@ -114,7 +114,8 @@ const appServ = async () => {
             // HELMET - Helmet helps secure Express apps by setting HTTP response headers.
             if (process.env.HELMET == 'true') {
                 logger.info("USE HELMET")
-                app.use(helmet())
+                // Set/Unset Content Security Policy
+                process.env.CSP == 'true' ? app.use(helmet()) : app.use(helmet({ contentSecurityPolicy: false }))
             }
             // CORS - enable CORS with various options.
             if (process.env.CORSENABLE == 'true') {
@@ -148,8 +149,10 @@ const appServ = async () => {
                 logger.info("USE STATIC - "+ process.env.STATIC)
                 setupStatic(app, process.env.STATIC);
             }
-            // MIDDLELOG - enables Server Side Events
-            setupMiddlelog(app, loggers.splat)
+            // MIDDLELOG - enables Server Side Events logging
+            if (process.env.SSE == 'ON') {
+                setupMiddlelog(app, loggers.splat)
+            }
             // ADD QUERY PARAMTERS - add query parameter to url string on per-route basis
             setupAddQuery(app, ROUTES);
             // ADD REQUEST INTERCEPT - intercept routes request and make specific modifications
@@ -193,8 +196,8 @@ const appServ = async () => {
                     try {
                         let __dirname = path.dirname(fileURLToPath(import.meta.url));
                         // if development use self signed certs else use letsencrypt certs
-                        let certfile = process.env.TARGETSTATUS == 'development' ? path.join(__dirname, 'conf', 'cert.pem') : process.env.APICERTFILE
-                        let keyfile = process.env.TARGETSTATUS == 'development' ? path.join(__dirname, 'conf', 'key.pem') : process.env.APIKEYFILE
+                        let certfile = process.env.APICERTFILE ? process.env.APICERTFILE: path.join(__dirname, 'conf', 'cert.pem')
+                        let keyfile = process.env.APIKEYFILE ? process.env.APIKEYFILE: path.join(__dirname, 'conf', 'key.pem')
                         const { key, cert } = cutils.getCerts(keyfile, certfile)
                         server = https.createServer({ key: key, cert: cert }, app);
                     } catch (error) {
@@ -208,7 +211,6 @@ const appServ = async () => {
                 logger.info("     PROXY SERVER  v." + version + "\n")
                 logger.info("BINDING ON HOST: " + process.env.SERVERHOST)
                 logger.info(process.env.HTTPTYPE + ' SERVER: listening on port ' + process.env.HTTPPORT);
-                logger.info('STARTED IN MODE ** ' + process.env.TARGETSTATUS + ' **');
                 logger.info(`worker pid=${process.pid}\n`);
                 logger.info("*******************************************")
             })
