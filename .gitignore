@@ -105,3 +105,6 @@ dist
 
 # do not export db
 *.sql
+
+#do not export vs directory
+.vs/
