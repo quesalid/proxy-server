@@ -1,0 +1,54 @@
+{
+  "HOST": "api.livingnet.eu",
+  "PORT": 3001,
+  "HTTPS": true,
+  "APIKEY": "tcptqv2e4psu8g4w4co2v9ossx0jao",
+  "USERNAME": "root@root.com",
+  "PASSWORD": "root",
+  "CALLS": [
+    {
+      "METHOD": "POST",
+      "PATH": "/command",
+      "BODY": {
+        "type": "api",
+        "version": 1.0,
+        "command": "getGroup",
+        "options": [
+          {
+            "name": "ALL",
+            "type": "eq"
+          }
+        ]
+      }
+    },
+    {
+      "METHOD": "POST",
+      "PATH": "/command",
+      "BODY": {
+        "type": "api",
+        "version": 1.0,
+        "command": "deleteGroup",
+        "options": {
+          "uid": "8a2b2e73-4b7a-4cca-8f58-6a84eb9c57e3"
+        }
+      }
+    },
+    {
+      "METHOD": "POST",
+      "PATH": "/command",
+      "BODY": {
+        "type": "api",
+        "version": 1.0,
+        "command": "insertGroup",
+        "options": {
+          "uid": "8a2b2e73-4b7a-4cca-8f58-6a84eb9c57e3",
+          "name": "ALL",
+          "type": "USER",
+          "description": "Gruppo default non cancellare ne modificare!!",
+          "tags": [ "ALL" ],
+          "owner": " 00000000-0000-0000-0000-000000000000"
+        }
+      }
+    }
+  ]
+}

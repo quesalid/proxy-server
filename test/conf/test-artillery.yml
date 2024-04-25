@@ -1,0 +1,42 @@
+config:
+  target: "https://localhost:3001"
+  phases:
+    - duration: 30
+      arrivalRate: 5
+  payload:
+    path: "./auth.csv"
+    fields:
+      - "username"
+      - "password"
+
+scenarios:
+  - name: "Authenticating users"
+    flow:
+      - post:
+          url: "/login"
+          json:
+            type: "username-password"
+            username: "{{username}}"
+            password: "{{password}}"
+          capture:
+            - json: "$.response.token"
+              as: "token"
+          expect:
+            - statusCode: 200
+      - think: 1
+      - get:
+          url: "/listusers"   
+          headers:
+            Authorization: 'Bearer {{ token }}'
+          expect:
+            - statusCode: 200
+      - think: 1
+      - get:
+          url: "/logout"
+          headers:
+            Authorization: 'Bearer {{ token }}'
+          expect:
+            - statusCode: 200
+
+
+    

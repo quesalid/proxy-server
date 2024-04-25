@@ -1,0 +1,40 @@
+.container {
+    font-family: Arial;
+    font-size: 12px;
+    text-align: left;
+    font-weight: normal;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    border : 1px solid #e0e0e0;
+}
+
+
+    .header #calendar-right-menu {
+        display:flex;
+        margin-left: auto;
+        align-items: center;
+    }
+    .header #calendar-left-menu {
+        display:flex;
+        align-items: center;
+    }
+    .header #calendar-left-menu span{
+       font-size: medium;
+       margin-left: 12px;
+    }
+
+    .header #calendar-right-menu input[type="image"] {
+        margin-left:10px;
+        margin-right: 10px;
+
+    }
+    .header #calendar-right-menu .avatar {
+        width: 35px;
+        height: 35px;
+        border: 1px solid;
+        color: #999;
+        border-radius: 50%;
+        margin-right: 10px;
+    }

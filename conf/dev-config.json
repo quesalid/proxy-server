@@ -1,0 +1,31 @@
+{
+  "childrens": [
+
+  ],
+  "env": {
+    "VERSION": "1.0",
+    "HTTPTYPE": "HTTPS",
+    "CORSENABLE": true,
+    "AUTH": "PROXY",
+    "BODYPARSER": true,
+    "RATELIMIT": false,
+    "CREDITCHECK": true,
+    "HELMET": true,
+    "HTTPPORT": 3004,
+    "AUTH_CLIENTSECRET": "tcptqv2e4psu8g4w4co2v9ossx0jao",
+    "AUTH_ACCESSTOKENURI": "https://127.0.0.1:3003",
+    "AUTH_AUTHORIZATIONURI": "https://127.0.0.1:3003/oauth/login",
+    "AUTH_REDIRECTURI": "https://127.0.0.1:3001/auth/up2id/callback",
+    "AUTH_EXPIRE": 120,
+    "AUTH_SCOPES": "notifications, gist",
+    "AUTH_APP_EXPIRES": 10800,
+    "TARGETSTATUS": "development",
+    "APICERTFILE": "/etc/letsencrypt/live/api.livingnet.eu/fullchain.pem",
+    "APIKEYFILE": "/etc/letsencrypt/live/api.livingnet.eu/privkey.pem",
+    "STATIC": "test/chat",
+    "SSE": "ON",
+    "SSEWEB": "OFF",
+    "SSEENDPOINT": "/streamlog",
+    "LOGPOST": "/loggerpost"
+  }
+}

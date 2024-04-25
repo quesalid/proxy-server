@@ -1,0 +1,38 @@
+{
+  "HOST": "api.livingnet.eu",
+  "PORT": 3001,
+  "HTTPS": true,
+  "APIKEY": "tcptqv2e4psu8g4w4co2v9ossx0jao",
+  "METHOD": "POST",
+  "PATH": "/chat/api/login/token",
+  "USERNAME": "root@root.com",
+  "PASSWORD": "root",
+  "CALLS": [
+    {
+      "METHOD": "POST",
+      "PATH": "/command",
+      "BODY": {
+        "type": "api",
+        "version": 1.0,
+        "command": "deleteProfilesFromGroup",
+        "options": {
+          "profiles": [ "fd538a6f-80ba-4477-aa9c-3eb6efc25b13" ],
+          "groupname": "ALL"
+        }
+      }
+    },
+    {
+      "METHOD": "POST",
+      "PATH": "/command",
+      "BODY": {
+        "type": "api",
+        "version": 1.0,
+        "command": "addProfilesToGroup",
+        "options": {
+          "profiles": [ "fd538a6f-80ba-4477-aa9c-3eb6efc25b13" ],
+          "groupname": "ALL"
+        }
+      }
+    }
+  ]
+}
